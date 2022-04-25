@@ -105,6 +105,22 @@ function createEmployee($data){
 
  function deleteEmployee($id){
     // Maak hier de code om een medewerker te verwijderen
+    $success = false;
+    try {
+        $pdo = openDatabaseConnection();
+
+        $stmt = $pdo->prepare("DELETE FROM employees WHERE id=?");
+        $stmt->execute([$id]);
+
+        if ($stmt) $success = true;
+
+    } catch (PDOException $e) {
+        echo "Connection failed. " . $e->getMessage();
+    }
+
+    $pdo = null;
+
+    return $success;
  }
 
 

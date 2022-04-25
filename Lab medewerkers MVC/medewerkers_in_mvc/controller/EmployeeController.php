@@ -46,15 +46,22 @@ function update(){
 
 function delete($id){
     //1. Haal een medewerker op met een specifiek id en sla deze op in een variable
-
+    $employee = getEmployee($id);
     //2. Geef een view weer voor het verwijderen en geef de variable met medewerker hieraan mee
-
+    render('employee/delete', ['employee' => $employee]);
 }
 
 function destroy($id){
     //1. Delete een medewerker uit de database
+    if (!isset($id)) exit("Error doing that.");
 
-	//2. Bouw een url en redirect hierheen
-    
+    $success = deleteEmployee($id);
+
+    //2. Bouw een url en redirect hierheen
+    if ($success) {
+        header("Location: " . URL . "employee/index");
+    } else {
+        echo "Error.";
+    }
 }
 ?>
