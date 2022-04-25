@@ -7,19 +7,27 @@ function index()
     //1. Haal alle medewerkers op uit de database (via de model) en sla deze op in een variable
     $employees = getAllEmployees();
     //2. Geef een view weer en geef de variable met medewerkers hieraan mee
-    render('employee/index', $employees);
+    render('employee/index', ['employees'=>$employees]);
 }
 
 function create(){
     //1. Geef een view weer waarin een formulier staat voor het aanmaken van een medewerker
-
+    render('employee/create');
 }
 
 function store(){
     //1. Maak een nieuwe medewerker aan met de data uit het formulier en sla deze op in de database
-
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $success = createEmployee($_POST);
+    } else {
+        echo "No data received.";
+    }
     //2. Bouw een url op en redirect hierheen
-
+    if ($success) {
+        header("Location: " . URL . "employee/index");
+    } else {
+        echo "Invalid data received.";
+    }
 }
 
 function edit($id){

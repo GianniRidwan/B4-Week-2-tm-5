@@ -68,9 +68,35 @@ function getEmployee($id){
  }
 
 function createEmployee($data){
-    // Maak hier de code om een medewerker toe te voegen
+    $success = false;
+    foreach ($data as $value) {
+        if (empty($value)) return false;
+    }
 
- }
+    // Maak hier de code om een medewerker toe te voegen
+    try {
+        $pdo = openDatabaseConnection();
+
+        $name = $data['name'];
+        $age = $data['age'];
+
+        $stmt = $pdo->prepare("INSERT INTO employees (name, age) VALUES (:name, :age)");
+        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":age", $age);
+
+        $stmt->execute();
+
+        if ($stmt) $success = true;
+
+    } catch (PDOException $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+
+    $pdo = null;
+
+    return $success;
+
+}
 
 
  function updateEmployee($data){
