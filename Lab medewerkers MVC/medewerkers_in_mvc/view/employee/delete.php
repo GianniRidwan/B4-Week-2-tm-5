@@ -8,6 +8,6 @@ if (isset($employee)) $employee = $employee;
     <p>Weet je zeker dat je <?= $employee['name'] ?> wil verwijderen?</p>
     <p>ID: #<?= $employee['id'] ?></p>
         <div class="row">
-            <a href="<?= URL ?>employee/index" class="btn btn-primary mt-4 col-4 mr-auto">Annuleer</a>
-            <a href="<?= URL ?>employee/destroy/<?= $employee['id'] ?>"class="btn btn-danger mt-4 col-4 ml-auto">Verwijder</a>
+            <a href="<?= URL ?>employee/index" class="btn btn-primary">Annuleer</a>
+            <a href="<?= URL ?>employee/destroy/<?= $employee['id'] ?>"class="btn btn-danger">Verwijder</a>
         </div>

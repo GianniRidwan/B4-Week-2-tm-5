@@ -5,5 +5,5 @@
     <input type="text" name="name" id="name" class="form-control">
     <label for="age" class="col-form-label">Leeftijd</label>
     <input type="text" name="age" id="age" class="form-control">
-    <input type="submit" class="btn btn-success form-control mt-4" value="Persoon toevoegen">
+    <input type="submit" class="btn btn-success form-control mt-2" value="Toevoegen">
 </form>
