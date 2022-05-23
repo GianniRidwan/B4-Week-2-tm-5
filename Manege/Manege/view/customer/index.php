@@ -4,7 +4,7 @@
 			<li><span>Naam </span><span>Adres </span><span>Telefoonnummer</span></li>
 			<?php foreach($customer as $customer){?>
 				<li>
-					<span><?php echo $customer['name']?></span>
+					<span><?php echo $customer['customerName']?></span>
 					<span><?php echo $customer['adres']?></span>
 					<span><?php echo $customer['phone']?></span>
 					<a href="<?php echo URL?>customer/edit/<?php echo $customer['id']?>">Wijzigen</a> 

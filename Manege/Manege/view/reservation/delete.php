@@ -1,12 +1,12 @@
 <?php
-// maak een bevestig pagina voor het verwijderen van een mededwerker
-if (isset($employee)) $employee = $employee;
+// maak een bevestig pagina voor het verwijderen van een reservation
+if (isset($reservation)) $reservation = $reservation;
 
 ?>
 
-<h1>Medewerker verwijderen</h1>
-    <p>Weet je zeker dat je <?= $employee['name'] ?> wil verwijderen?</p>
+<h1>Reservering verwijderen</h1>
+    <p>Weet je zeker dat je de reservering wil verwijderen?</p>
         <div class="row">
-            <a href="<?= URL ?>employee/index" class="btn btn-primary">Annuleer</a>
-            <a href="<?= URL ?>employee/destroy/<?= $employee['id'] ?>"class="btn btn-danger">Verwijder</a>
+            <a href="<?= URL ?>reservation/index" class="btn btn-primary">Annuleer</a>
+            <a href="<?= URL ?>reservation/destroy/<?= $reservation['id'] ?>"class="btn btn-danger">Verwijder</a>
         </div>

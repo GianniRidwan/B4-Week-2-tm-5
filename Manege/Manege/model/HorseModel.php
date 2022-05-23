@@ -1,6 +1,6 @@
 <?php
 
-function getAllEmployees()
+function getAllHorse()
 {
     // Met het try statement kunnen we code proberen uit te voeren. Wanneer deze
     // mislukt kunnen we de foutmelding afvangen en eventueel de gebruiker een
@@ -10,7 +10,7 @@ function getAllEmployees()
         $conn = openDatabaseConnection();
 
         // Zet de query klaar door middel van de prepare method
-        $stmt = $conn->prepare("SELECT * FROM employees");
+        $stmt = $conn->prepare("SELECT * FROM horse");
 
         // Voer de query uit
         $stmt->execute();
@@ -34,7 +34,7 @@ function getAllEmployees()
     return $result;
 }
 
-function getEmployee($id)
+function getHorse($id)
 {
     try {
         // Open de verbinding met de database
@@ -42,7 +42,7 @@ function getEmployee($id)
 
         // Zet de query klaar door midel van de prepare method. Voeg hierbij een
         // WHERE clause toe (WHERE id = :id. Deze vullen we later in de code
-        $stmt = $conn->prepare("SELECT * FROM employees WHERE id = :id");
+        $stmt = $conn->prepare("SELECT * FROM horse WHERE id = :id");
         // Met bindParam kunnen we een parameter binden. Dit vult de waarde op de plaats in
         // We vervangen :id in de query voor het id wat de functie binnen is gekomen.
         $stmt->bindParam(":id", $id);
@@ -66,7 +66,7 @@ function getEmployee($id)
     return $result;
 }
 
-function createEmployee($data)
+function createHorse($data)
 {
     $success = false;
     foreach ($data as $woop) {
@@ -77,12 +77,16 @@ function createEmployee($data)
     try {
         $pdo = openDatabaseConnection();
 
-        $name = sanitize($data['name']);
+        $horsename = sanitize($data['horsename']);
         $age = sanitize($data['age']);
+        $breed = sanitize($data['breed']);
+        $height = sanitize($data['height']);
 
-        $stmt = $pdo->prepare("INSERT INTO employees (name, age) VALUES (:name, :age)");
-        $stmt->bindParam(":name", $name);
+        $stmt = $pdo->prepare("INSERT INTO horse (horsename, age, breed, height) VALUES (:horsename, :age, :breed, :height)");
+        $stmt->bindParam(":horsename", $horsename);
         $stmt->bindParam(":age", $age);
+        $stmt->bindParam(":breed", $breed);
+        $stmt->bindParam(":height", $height);
 
         $stmt->execute();
 
@@ -99,7 +103,7 @@ function createEmployee($data)
 }
 
 
-function updateEmployee($data)
+function updateHorse($data)
 {
     // Maak hier de code om een medewerker te bewerken
     $success = false;
@@ -107,13 +111,17 @@ function updateEmployee($data)
         $pdo = openDatabaseConnection();
 
         $id = sanitize($data['id']);
-        $name = sanitize($data['name']);
+        $horsename = sanitize($data['horsename']);
         $age = sanitize($data['age']);
+        $breed = sanitize($data['breed']);
+        $height = sanitize($data['height']);
 
-        $stmt = $pdo->prepare("UPDATE employees SET name=:name, age=:age WHERE id=:id");
-        $stmt->bindParam(":name", $name);
-        $stmt->bindParam(":age", $age);
+        $stmt = $pdo->prepare("UPDATE horse SET horsename=:horsename, age=:age, breed=:breed, height=:height WHERE id=:id");
         $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":horsename", $horsename);
+        $stmt->bindParam(":age", $age);
+        $stmt->bindParam(":breed", $breed);
+        $stmt->bindParam(":height", $height);
 
         $stmt->execute();
 
@@ -127,7 +135,7 @@ function updateEmployee($data)
     return $success;
 }
 
-function deleteEmployee($id)
+function deleteHorse($id)
 {
     // Maak hier de code om een medewerker te verwijderen
     $success = false;
@@ -135,7 +143,7 @@ function deleteEmployee($id)
         $pdo = openDatabaseConnection();
         $id = sanitize($id);
 
-        $stmt = $pdo->prepare("DELETE FROM employees WHERE id=?");
+        $stmt = $pdo->prepare("DELETE FROM horse WHERE id=?");
         $stmt->execute([$id]);
 
         if ($stmt) $success = true;

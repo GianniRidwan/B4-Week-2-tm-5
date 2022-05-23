@@ -1,10 +1,11 @@
-	<h1>Overzicht van personen</h1>
+	<h1>Overzicht van reserveringen</h1>
 		<ul>
-			<?php foreach($employees as $employee){?>
+			<li><a href="<?=URL?>reservation/create"> Reserveer een paard</a></li>
+			<?php foreach($reservation as $reservation){?>
 				<li>
-					<span><?php echo $employee['name']?> is <?php echo $employee['age']?> jaar</span>
-					<a href="<?php echo URL?>employee/edit/<?php echo $employee['id']?>">Wijzigen</a> 
-					<a href="<?php echo URL?>employee/delete/<?php echo $employee['id']?>">Verwijderen</a>
+					<span><?php echo $reservation['name']?> is <?php echo $reservation['age']?> jaar</span>
+					<a href="<?php echo URL?>reservation/edit/<?php echo $reservation['id']?>">Wijzigen</a> 
+					<a href="<?php echo URL?>reservation/delete/<?php echo $reservation['id']?>">Verwijderen</a>
 				</li>
 			<?php }; ?>
 		</ul>

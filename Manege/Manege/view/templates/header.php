@@ -17,7 +17,6 @@
 	<ul>
 		<li><a href="<?=URL?>customer/index"> Overzicht klanten</a></li>
 		<li><a href="<?=URL?>horse/index"> Overzicht paarden</a></li>
-		<li><a href="<?=URL?>horse/create"> Paard toevoegen</a></li>
-		<li><a href="<?=URL?>reservation/index"> Paarden reserveren</a></li>
+		<li><a href="<?=URL?>reservation/index"> Overzicht reserveringen</a></li>
 	</ul>
 </nav>

@@ -1,6 +1,6 @@
 <?php
 
-function getAllEmployees()
+function getAllReservation()
 {
     // Met het try statement kunnen we code proberen uit te voeren. Wanneer deze
     // mislukt kunnen we de foutmelding afvangen en eventueel de gebruiker een
@@ -10,7 +10,7 @@ function getAllEmployees()
         $conn = openDatabaseConnection();
 
         // Zet de query klaar door middel van de prepare method
-        $stmt = $conn->prepare("SELECT * FROM employees");
+        $stmt = $conn->prepare("SELECT * FROM reservation");
 
         // Voer de query uit
         $stmt->execute();
@@ -34,7 +34,7 @@ function getAllEmployees()
     return $result;
 }
 
-function getEmployee($id)
+function getReservation($id)
 {
     try {
         // Open de verbinding met de database
@@ -42,7 +42,7 @@ function getEmployee($id)
 
         // Zet de query klaar door midel van de prepare method. Voeg hierbij een
         // WHERE clause toe (WHERE id = :id. Deze vullen we later in de code
-        $stmt = $conn->prepare("SELECT * FROM employees WHERE id = :id");
+        $stmt = $conn->prepare("SELECT * FROM reservation WHERE id = :id");
         // Met bindParam kunnen we een parameter binden. Dit vult de waarde op de plaats in
         // We vervangen :id in de query voor het id wat de functie binnen is gekomen.
         $stmt->bindParam(":id", $id);
@@ -66,7 +66,7 @@ function getEmployee($id)
     return $result;
 }
 
-function createEmployee($data)
+function createReservation($data)
 {
     $success = false;
     foreach ($data as $woop) {
@@ -80,7 +80,7 @@ function createEmployee($data)
         $name = sanitize($data['name']);
         $age = sanitize($data['age']);
 
-        $stmt = $pdo->prepare("INSERT INTO employees (name, age) VALUES (:name, :age)");
+        $stmt = $pdo->prepare("INSERT INTO reservation (name, age) VALUES (:name, :age)");
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":age", $age);
 
@@ -99,7 +99,7 @@ function createEmployee($data)
 }
 
 
-function updateEmployee($data)
+function updateReservation($data)
 {
     // Maak hier de code om een medewerker te bewerken
     $success = false;
@@ -110,7 +110,7 @@ function updateEmployee($data)
         $name = sanitize($data['name']);
         $age = sanitize($data['age']);
 
-        $stmt = $pdo->prepare("UPDATE employees SET name=:name, age=:age WHERE id=:id");
+        $stmt = $pdo->prepare("UPDATE reservation SET name=:name, age=:age WHERE id=:id");
         $stmt->bindParam(":name", $name);
         $stmt->bindParam(":age", $age);
         $stmt->bindParam(":id", $id);
@@ -127,7 +127,7 @@ function updateEmployee($data)
     return $success;
 }
 
-function deleteEmployee($id)
+function deleteReservation($id)
 {
     // Maak hier de code om een medewerker te verwijderen
     $success = false;
@@ -135,7 +135,7 @@ function deleteEmployee($id)
         $pdo = openDatabaseConnection();
         $id = sanitize($id);
 
-        $stmt = $pdo->prepare("DELETE FROM employees WHERE id=?");
+        $stmt = $pdo->prepare("DELETE FROM reservation WHERE id=?");
         $stmt->execute([$id]);
 
         if ($stmt) $success = true;

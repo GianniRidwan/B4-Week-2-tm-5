@@ -2,7 +2,7 @@
 <form name="create" method="post" action="store">
 	<!-- bouw hier je formulier -->
 	<label for="name" class="col-form-label">Naam</label>
-    <input type="text" name="name" id="name" class="form-control">
+    <input type="text" name="name" id="horsename" class="form-control">
     <label for="age" class="col-form-label">Ras</label>
     <input type="text" name="breed" id="breed" class="form-control">
     <label for="age" class="col-form-label">Leeftijd</label>

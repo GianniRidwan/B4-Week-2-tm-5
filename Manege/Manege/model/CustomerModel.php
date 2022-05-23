@@ -77,12 +77,12 @@ function createCustomer($data)
     try {
         $pdo = openDatabaseConnection();
 
-        $name = sanitize($data['name']);
+        $customerName = sanitize($data['customerName']);
         $adres = sanitize($data['adres']);
         $phone = sanitize($data['phone']);
 
-        $stmt = $pdo->prepare("INSERT INTO customer (name, adres, phone) VALUES (:name, :adres, :phone)");
-        $stmt->bindParam(":name", $name);
+        $stmt = $pdo->prepare("INSERT INTO customer (customerName, adres, phone) VALUES (:customerName, :adres, :phone)");
+        $stmt->bindParam(":customerName", $customerName);
         $stmt->bindParam(":adres", $adres);
         $stmt->bindParam(":phone", $phone);
 
@@ -109,12 +109,12 @@ function updateCustomer($data)
         $pdo = openDatabaseConnection();
 
         $id = sanitize($data['id']);
-        $name = sanitize($data['name']);
+        $customerName = sanitize($data['customerName']);
         $adres = sanitize($data['adres']);
         $phone = sanitize($data['phone']);
 
-        $stmt = $pdo->prepare("UPDATE customer SET name=:name, adres=:adres, phone=:phone WHERE id=:id");
-        $stmt->bindParam(":name", $name);
+        $stmt = $pdo->prepare("UPDATE customer SET customerName=:customerName, adres=:adres, phone=:phone WHERE id=:id");
+        $stmt->bindParam(":customerName", $customerName);
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":adres", $adres);
         $stmt->bindParam(":phone", $phone);
